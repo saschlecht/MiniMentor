@@ -4,7 +4,7 @@ from openai import OpenAI
 client = OpenAI(api_key = API_KEY)
 
 while True:
-  content = input();
+  content = input()
 
   completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
