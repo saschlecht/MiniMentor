@@ -5,7 +5,7 @@ body {
 }
 
 .topnav {
-background-color: #3E78B2;
+background-color: #080F47;
 overflow: hidden;
 }
 
@@ -20,6 +20,7 @@ font-size: 18px;
 }
 
 
+
 .topnav a:hover {
 background-color: #C6E0FF;
 color: black;
@@ -27,14 +28,14 @@ color: black;
 
 
 .topnav a.active {
-background-color: #004BA8;
+background-color: #3E78B2;
 color: white;
 }
 
-.mainbody {
+.mainbodyT {
     background-color: #C6E0FF;
     width: 600px;
-    border: 15px #004BA8;
+    border: 15px #3E78B2;
     padding: 30px;
     text-align: center;
     margin: auto;
@@ -42,5 +43,12 @@ color: white;
   }
 
 .logo{
-    width: 15px;
+    width: 45px;
+    top: 0;
+    left: 0;
+    float: left;
+}
+
+.regular{
+    margin-left: 15px;
 }
