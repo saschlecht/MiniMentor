@@ -7,7 +7,7 @@ def APIRequest(content):
   completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-      {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as inputs and change a few words to make the input sound more professional."},
+      {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as input and change ONLY words that sound unprofessional."},
       {"role": "user", "content": content},
     ]
   )
@@ -17,6 +17,8 @@ def APIRequest(content):
 # find the difference in the text of the input and output, return a vector of those differences 
 def textDiff(str1, str2):
   print("hello") # not functional yet 
+  
+
 
 
 if __name__ == "__main__":
@@ -31,10 +33,10 @@ if __name__ == "__main__":
     output = APIRequest(content)
     print(output + "\n")
     
-    difference = textDiff(content, output)
+    # difference = textDiff(content, output)
     
-    print(difference)
-    
+    # print(difference)
+  
 
   
   
