@@ -1,10 +1,14 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from openai import OpenAI
 
 app = Flask(__name__)
 API_KEY = os.environ.get('OPENAI_API_KEY')
 client = OpenAI(api_key=API_KEY)
+
+@app.route('/')
+def home():
+  return render_template('HomePage.html')
 
 @app.route('/get-completion', methods=['POST'])
 def get_completion():
@@ -32,4 +36,4 @@ def text_diff():
     return jsonify({"difference": difference})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5100)
