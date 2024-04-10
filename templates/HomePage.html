@@ -6,18 +6,10 @@
 </head>
 
 <body>
-    <div class="topnav">
-        <a>
-            <img class="logo" src="https://static.vecteezy.com/system/resources/previews/009/665/567/non_2x/robot-clipart-illustration-free-png.png">
-        </a>
-        <a class="active" href="file:///C:/Users/HP/OneDrive/4SWE/HomePage.html">Home</a>
-        <a href="file:///C:/Users/HP/OneDrive/4SWE/Tips.html">Professional Tips</a>
-        <a href="file:///C:/Users/HP/OneDrive/4SWE/HowTo.html">How to Use</a>
-        <a href="file:///C:/Users/HP/OneDrive/4SWE/History.html">History</a>
-    </div>
-    <h1 style="margin-left: 15px;">Mini Mentor</h1>
+    {% extends "layout.html" %}
+{% block content %}
 
-    <div class="mainbody">
+    <div class="home, mainbody">
         <h1>Mini Mentor</h1>
         <h3>Please enter a paragraph that you need help revising!</h3>
         <form id="queryForm">
@@ -25,7 +17,7 @@
             <button type="button" onclick="submitForm()">Submit</button>
         </form>
     </div>
-
+    {% endblock %}
     <script>
         function submitForm() {
             const userInput = document.getElementById('userInput').value;
