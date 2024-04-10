@@ -6,18 +6,18 @@
 </head>
 
 <body>
-    <div class="topnav">
-        <a>
-            <img class="logo" src="https://static.vecteezy.com/system/resources/previews/009/665/567/non_2x/robot-clipart-illustration-free-png.png">
-            </a>
-            <a href="file:///C:/Users/HP/OneDrive/4SWE/HomePage.html">
-                Home
-            </a>
-        <a href="file:///C:/Users/HP/OneDrive/4SWE/Tips.html">Professional Tips</a>
-        <a class = "active" href="file:///C:/Users/HP/OneDrive/4SWE/HowTo.html">How to Use</a>
-        <a href="file:///C:/Users/HP/OneDrive/4SWE/History.html">History</a>
-        
+    {% extends "layout.html" %}
+{% block content %}
+      <div class="howto, mainbody">
+            <h1>How to Use Mini Mentor</h1>
+            <ul>
+                <li>Create an account and login</li>
+                <li>Utilize the text box on the homepage to send mini mentor your writing for review</li>
+                <li>Click on the history tab to view previous usage of Mini Mentor</li>
+                <li>The Tips tab can provide you with more ways to improve your overall communication in the workplace</li>
+            </ul>
       </div>
-<h1 style="margin-left: 15px;">How to Use</h1>
+      {% endblock %}
+
 </body>
 </html>
