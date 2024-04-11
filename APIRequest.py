@@ -10,6 +10,18 @@ client = OpenAI(api_key=API_KEY)
 def home():
   return render_template('HomePage.html')
 
+@app.route('/tips/')
+def tips():
+    return render_template('Tips.html')
+
+@app.route('/howto/')
+def howto():
+    return render_template('HowTo.html')
+
+@app.route('/history/')
+def history():
+    return render_template('History.html')
+
 @app.route('/get-completion', methods=['POST'])
 def get_completion():
     content = request.json.get('content')
