@@ -1,10 +1,13 @@
 import os
 from flask import Flask, request, jsonify, render_template
 from openai import OpenAI
+from DBConnection import database_bp
 
 app = Flask(__name__)
 API_KEY = os.environ.get('OPENAI_API_KEY')
 client = OpenAI(api_key=API_KEY)
+
+app.register_blueprint(database_bp, url_prefix="/db_bp")
 
 @app.route('/')
 def home():
@@ -21,6 +24,10 @@ def howto():
 @app.route('/history/')
 def history():
     return render_template('History.html')
+
+@app.route('/signup/')
+def signup():
+    return render_template('SignUp.html')
 
 @app.route('/get-completion', methods=['POST'])
 def get_completion():
