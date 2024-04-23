@@ -56,3 +56,4 @@ def text_diff():
 
 if __name__ == "__main__":
     app.run(debug=True, port=5100)
+    

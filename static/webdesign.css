@@ -63,4 +63,29 @@ textarea {
 
 .button {
     margin-top: 20px;
+
 }
+
+.small-container {
+    width: 300px; /* Adjust width as needed */
+    margin: auto;
+}
+
+.signup {
+    margin-top: 50px;
+    background-color: #C6E0FF;
+    width: 300px;
+    padding: 20px;
+    margin-left: 250px; /* Align signup section to the left */
+    margin-right: auto; /* Align signup section to the right */
+}
+
+.login {
+    margin-top: 50px;
+    background-color: #C6E0FF;
+    width: 300px;
+    padding: 20px;
+    margin-left: auto; /* Align login section to the left */
+    margin-right: 250px; /* Align login section to the right */
+}
+
