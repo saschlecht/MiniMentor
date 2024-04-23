@@ -35,7 +35,7 @@ def get_completion():
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as inputs and change a few words to make the input sound more professional."},
+            {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as inputs and change as few words as possible to make the input sound more professional."},
             {"role": "user", "content": content},
         ]
     )
