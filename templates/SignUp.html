@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='webdesign.css') }}">
+</head>
+
+<body>
+    {% extends "layout.html" %}
+{% block content %}
+    <div class="signup, mainbody">
+        <h1>Sign Up</h1>
+        <form>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" placeholder="JohnDoe"><br>
+            <label for="password">Password:</label><br>
+            <input type="text" id="password" name="password" placeholder="Abc123"><br><br>
+            <button type="button" onclick="sendUsernamePW()">Create Account</button>
+        </form>
+    </div>
+    <script>
+        function sendUsernamePW() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const input = { username, password };
+
+            // currently just passing username and password to DBconnection and checking that it was passed back to here
+            fetch('http://127.0.0.1:5100/db_bp/create-account', { // Use the full URL for the Flask endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: input }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Username: " + data.username + "\nPassword: " + data.password); 
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>
