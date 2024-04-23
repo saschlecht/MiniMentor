@@ -9,16 +9,13 @@
     {% extends "layout.html" %}
     {% block content %}
     <div class="home mainbody">
-    {% block content %}
-    <div class="home mainbody">
         <h1>Mini Mentor</h1>
         <h3>Please enter a paragraph that you need help revising!</h3>
         <div class="container">
-            <textarea id="userInput" name="userInput" rows="15" cols="50" placeholder="Enter your text here"></textarea>
-            <textarea id="outputText" rows="15" cols="50" placeholder="Revised text will appear here" readonly></textarea>
+            <textarea id="userInput" name="userInput" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+            <textarea id="outputText" rows="4" cols="50" placeholder="Revised text will appear here" readonly></textarea>
         </div>
-        <br><br>
-        <button style="font-size: 15px" type="button" onclick="submitForm()">Submit</button>
+        <button type="button" onclick="submitForm()">Submit</button>
     </div>
     <script>
         function submitForm() {
@@ -33,7 +30,7 @@
             .then(response => response.json())
             .then(data => {
                 // Update the outputText textarea with the revised text
-                document.getElementById('outputText').value = data.revised;
+                document.getElementById('outputText').value = "Revised: " + data.revised;
             })
             .catch((error) => {
                 console.error('Error:', error);
