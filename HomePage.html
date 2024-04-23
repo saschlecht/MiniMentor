@@ -30,7 +30,7 @@
             .then(response => response.json())
             .then(data => {
                 // Update the outputText textarea with the revised text
-                document.getElementById('outputText').value = data.revised;
+                document.getElementById('outputText').value = "Revised: " + data.revised;
             })
             .catch((error) => {
                 console.error('Error:', error);
