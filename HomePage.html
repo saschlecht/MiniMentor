@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='webdesign.css') }}">
+</head>
+
+<body>
+    {% extends "layout.html" %}
+    {% block content %}
+    <div class="home mainbody">
+        <h1>Mini Mentor</h1>
+        <h3>Please enter a paragraph that you need help revising!</h3>
+        <div class="container">
+            <textarea id="userInput" name="userInput" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+            <textarea id="outputText" rows="4" cols="50" placeholder="Revised text will appear here" readonly></textarea>
+        </div>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </div>
+    <script>
+        function submitForm() {
+            const userInput = document.getElementById('userInput').value;
+            fetch('http://127.0.0.1:5100/get-completion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the outputText textarea with the revised text
+                document.getElementById('outputText').value = data.revised;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>
