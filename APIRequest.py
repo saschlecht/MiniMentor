@@ -35,8 +35,8 @@ def get_completion():
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as inputs and change a few words to make the input sound more professional."},
-            {"role": "user", "content": content},
+            {"role": "system", "content": "You are a friendly and helpful professional assistant. You take paragraphs as inputs and change ONLY a few words to make the input sound more professional."},
+            {"role": "user", "content": "Change only a few words from this paragraph, but nothing too significant:" + content},
         ]
     )
     revised_text = completion.choices[0].message.content
