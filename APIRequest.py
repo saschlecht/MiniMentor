@@ -5,7 +5,7 @@ from DBConnection import database_bp
 
 app = Flask(__name__)
 API_KEY = os.environ.get('OPENAI_API_KEY')
-client = OpenAI(api_key=API_KEY)
+client = OpenAI(api_key="API_KEY")
 
 app.register_blueprint(database_bp, url_prefix="/db_bp")
 
