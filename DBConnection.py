@@ -1,4 +1,4 @@
-import mysql.connector
+#import mysql.connector
 import hashlib
 from flask import Flask, Blueprint, request, jsonify, render_template
 
