@@ -52,7 +52,7 @@
                     alert(data.password);
                 } 
                 else {
-                    alert("Success!"); 
+                    alert("Successfully created account! Login to save history");
                 };
             })
             .catch((error) => {
@@ -79,7 +79,7 @@
                     alert(data.password);
                 } 
                 else {
-                    alert("Successfully logged in! Welcome back " + data.username); 
+                    alert("Successfully logged in! Welcome back " + data.username + ", please refresh page"); 
                     // somewhere we have to make it remember that the person is logged in and keep track
                     // of their actions on the sight
                 };
