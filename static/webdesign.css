@@ -87,3 +87,13 @@ textarea {
     margin-right: 250px; /* Align login section to the right */
 }
 
+.logout {
+    background-color: #C6E0FF;
+    width: 300px;
+    border: 15px #004BA8;
+    padding: 30px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
