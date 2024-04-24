@@ -8,7 +8,7 @@ body {
     background-color: #004BA8;
     overflow: hidden;
     display: flex; 
-    justify-content: flex-start; 
+    justify-content: flex-start;
     list-style-type: none;
 }
   
@@ -88,3 +88,24 @@ textarea {
     margin-right: 250px; /* Align login section to the right */
 }
 
+.logout {
+    background-color: #C6E0FF;
+    width: 300px;
+    border: 15px #004BA8;
+    padding: 30px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#diffArea {
+    font-size: 15px;
+    color: black;
+    padding: 10px;
+}
+
+#test {
+    font-size: 15px;
+    color: black;
+    padding: 10px;
+}

@@ -51,7 +51,7 @@ def get_completion():
     # this is where score would be added to database
     # if we don't implement score, just add count of text entries instead
 
-    return jsonify({"original": inputMessage, "revised": revised_text, "difference:" : difference})
+    return jsonify({"original": inputMessage, "revised": revised_text, "difference" : difference})
 
 # # This route can be added to test the textDiff functionality once we've implemented it
 # # It should accept two texts and return their differences
