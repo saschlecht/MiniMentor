@@ -8,7 +8,8 @@ body {
     background-color: #004BA8;
     overflow: hidden;
     display: flex; /* Added this line */
-    justify-content: flex-start; /* Added this line */
+    justify-content: flex-start; 
+    list-style-type: none;
 }
   
 .menu a {

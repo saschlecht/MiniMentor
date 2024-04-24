@@ -8,29 +8,15 @@
 <body>
     {% extends "layout.html" %}
 {% block content %}
-    <div class="signup">
-        <div class="small-container">
+    <div class="signup, mainbody">
+        <h1>Sign Up</h1>
         <form>
-            <h1>Sign Up</h1>
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" placeholder="JohnDoe"><br>
             <label for="password">Password:</label><br>
             <input type="text" id="password" name="password" placeholder="Abc123"><br><br>
-            <button type="button" onclick="sendUsernamePW()">Create account</button>
+            <button type="button" onclick="sendUsernamePW()">Create Account</button>
         </form>
-        </div>
-    </div>
-    <div class="login">
-        <div class="small-container">
-        <form>
-            <h1>Log In</h1>
-            <label for="username1">Username:</label><br>
-            <input type="text" id="username1" name="username1" placeholder="JohnDoe"><br>
-            <label for="password1">Password:</label><br>
-            <input type="text" id="password1" name="password1" placeholder="Abc123"><br><br>
-            <button type="button" onclick="login()">Log in</button>
-        </form>
-        </div>
     </div>
     <script>
         function sendUsernamePW() {
@@ -39,6 +25,7 @@
 
             const input = { username, password };
 
+            // currently just passing username and password to DBconnection and checking that it was passed back to here
             fetch('http://127.0.0.1:5100/db_bp/create-account', { // Use the full URL for the Flask endpoint
                 method: 'POST',
                 headers: {
@@ -48,41 +35,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.username == "ERROR CODE") {
-                    alert(data.password);
-                } 
-                else {
-                    alert("Success!"); 
-                };
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-
-        function login() {
-            const username = document.getElementById('username1').value;
-            const password = document.getElementById('password1').value;
-
-            const input = { username, password };
-
-            fetch('http://127.0.0.1:5100/db_bp/acct-login', { // Use the full URL for the Flask endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ content: input }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.username == "ERROR CODE") {
-                    alert(data.password);
-                } 
-                else {
-                    alert("Successfully logged in! Welcome back " + data.username); 
-                    // somewhere we have to make it remember that the person is logged in and keep track
-                    // of their actions on the sight
-                };
+                alert("Username: " + data.username + "\nPassword: " + data.password); 
             })
             .catch((error) => {
                 console.error('Error:', error);

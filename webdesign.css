@@ -4,13 +4,13 @@ body {
     background-color:aliceblue;
 }
 
-.menu {
-background-color: #004BA8;
+.topnav {
+background-color: #3E78B2;
 overflow: hidden;
 }
 
 
-.menu a {
+.topnav a {
 float: left;
 color: #f2f2f2;
 text-align: center;
@@ -20,14 +20,14 @@ font-size: 18px;
 }
 
 
-.menu a:hover {
+.topnav a:hover {
 background-color: #C6E0FF;
 color: black;
 }
 
 
-.menu a.active {
-background-color: #3E78B2;
+.topnav a.active {
+background-color: #004BA8;
 color: white;
 }
 
@@ -42,25 +42,5 @@ color: white;
   }
 
 .logo{
-    width: 45px;
-    top: 0;
-    left: 0;
-    float: left;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-textarea {
-    flex: 1; 
-    margin: 0 10px; 
-    padding: 10px;
-    resize: vertical;
-}
-
-.button {
-    margin-top: 20px;
+    width: 15px;
 }
