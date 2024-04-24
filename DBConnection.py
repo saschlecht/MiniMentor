@@ -1,6 +1,5 @@
 import mysql.connector
-import hashlib
-from flask import Flask, Blueprint, request, jsonify, render_template
+from flask import Flask, Blueprint, request, jsonify, render_template, session
 
 database_bp = Blueprint('database', __name__, static_folder="static", template_folder="templates")
 
@@ -40,6 +39,10 @@ def create_account():
 
   conn.commit()
   conn.close()
+
+  session['username'] = user
+  session['password'] = pw
+
   return jsonify({'username': user, 'password': pw})
 
 @database_bp.route('/acct-login', methods=['POST'])
@@ -60,8 +63,7 @@ def acct_login():
     "SELECT * FROM userdata4 WHERE username = %s"
   )
   cur.execute(search_stmt, (user, ))
-  entries = cur.fetchall();
-  
+  entries = cur.fetchall()
   if len(entries) == 0:
     return jsonify({'username': "ERROR CODE", 'password': "Username doesn't exist, please create account or try again"})
 
@@ -70,7 +72,7 @@ def acct_login():
     "SELECT * FROM userdata4 WHERE username = %s AND password = %s"
   )
   cur.execute(search_stmt2, (user, pw))
-  entries2 = cur.fetchall();
+  entries2 = cur.fetchall()
 
   if len(entries2) == 0:
     return jsonify({'username': "ERROR CODE", 'password': "Wrong password, please try again"})
@@ -78,5 +80,43 @@ def acct_login():
   conn.commit()
   conn.close()
 
+  session['username'] = user
+  session['password'] = pw
+
   return jsonify({'username': user, 'password': pw})
   
+@database_bp.route('/acct-logout', methods=['POST'])
+def acct_logout():
+  # connect to database
+  conn = mysql.connector.connect(host='localhost', password='rootSQL', user='root', database='minimentordb')
+  if conn.is_connected():
+    print("Connection established...")
+  cur = conn.cursor()
+
+  # find value of user's previous logins
+  search_stmt = (
+    "SELECT sessions FROM userdata4 WHERE username = %s"
+  )
+  cur.execute(search_stmt, (session['username'], ))
+  entries = cur.fetchall()
+
+  # increment number of logins by 1
+  sessionsVal = None
+  for entry in entries:
+    if entry[0] == None:
+      sessionsVal = 1
+    else:
+      sessionsVal = entry[0] + 1
+  update_stmt = (
+    "UPDATE userdata4 SET sessions = %s WHERE username=%s"
+  )
+  cur.execute(update_stmt, (sessionsVal, session['username']))
+
+  # add data collected from session to database here
+
+  session.clear()
+  conn.commit()
+  conn.close()
+
+  return jsonify({'message': 'Logout successful'})
+
