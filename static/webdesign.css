@@ -7,8 +7,9 @@ body {
 .menu {
     background-color: #004BA8;
     overflow: hidden;
-    display: flex; /* Added this line */
-    justify-content: flex-start; /* Added this line */
+    display: flex; 
+    justify-content: flex-start; 
+    list-style-type: none;
 }
   
 .menu a {
@@ -85,15 +86,5 @@ textarea {
     padding: 20px;
     margin-left: auto; /* Align login section to the left */
     margin-right: 250px; /* Align login section to the right */
-}
-
-.logout {
-    background-color: #C6E0FF;
-    width: 300px;
-    border: 15px #004BA8;
-    padding: 30px;
-    text-align: center;
-    margin: auto;
-    margin-top: 20px;
 }
 
