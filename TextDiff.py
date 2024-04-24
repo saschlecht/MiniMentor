@@ -8,9 +8,8 @@ def calculate_difference(string1, string2):
   completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant that finds the difference between two paragraphs and outputs what is different about them in a numbered list format. Uses as little text as possible to accomplish this"},
+        {"role": "system", "content": "You are a helpful assistant that finds the difference between two paragraphs and outputs what is different about them in a list format."},
         {"role": "user", "content": "Find the difference between these two pieces of text: \n Text 1:" + string1 + "\n Text 2: " + string2},
-        {"role": "user", "content": "Replace the changed to in the output to a /. MAKE SURE you do this"},
     ]
   )
   diff = completion.choices[0].message.content

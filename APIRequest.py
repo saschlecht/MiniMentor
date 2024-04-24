@@ -1,12 +1,13 @@
 import os
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session
 from openai import OpenAI
 from DBConnection import database_bp
 import TextDiff
 
 app = Flask(__name__)
 API_KEY = os.environ.get('OPENAI_API_KEY')
-client = OpenAI(api_key= API_KEY)
+client = OpenAI(api_key=API_KEY)
+app.secret_key = 'MiniMentorAdmin'
 
 app.register_blueprint(database_bp, url_prefix="/db_bp")
 
@@ -28,7 +29,10 @@ def history():
 
 @app.route('/signup/')
 def signup():
-    return render_template('SignUp.html')
+    if 'username' in session:
+        return render_template('LogOut.html')
+    else:
+        return render_template('SignUp.html')
 
 @app.route('/get-completion', methods=['POST'])
 def get_completion():
@@ -43,7 +47,11 @@ def get_completion():
     revised_text = completion.choices[0].message.content
     # Placeholder for difference logic
     difference = TextDiff.calculate_difference(inputMessage, revised_text) 
-    return jsonify({"original": inputMessage, "revised": revised_text, "difference" : difference})
+
+    # this is where score would be added to database
+    # if we don't implement score, just add count of text entries instead
+
+    return jsonify({"original": inputMessage, "revised": revised_text, "difference:" : difference})
 
 # # This route can be added to test the textDiff functionality once we've implemented it
 # # It should accept two texts and return their differences
