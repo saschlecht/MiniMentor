@@ -7,21 +7,24 @@
 
 <body>
     {% extends "layout.html" %}
-{% block content %}
-
-    <div class="home, mainbody">
+    {% block content %}
+    <div class="home mainbody">
         <h1>Mini Mentor</h1>
         <h3>Please enter a paragraph that you need help revising!</h3>
-        <form id="queryForm">
-            <textarea id="userInput" name="userInput" rows="4" cols="50"></textarea><br>
-            <button type="button" onclick="submitForm()">Submit</button>
-        </form>
+        <div class="container">
+            <textarea id="userInput" name="userInput" rows="15" cols="50" placeholder="Enter your text here"></textarea>
+            <textarea id="outputText" rows="15" cols="50" placeholder="Revised text will appear here" readonly></textarea>
+        </div>
+        <br><br>
+        <button style="font-size: 15px" type="button" onclick="submitForm()">Submit</button>
+        <br><br>
+        <div id= test></div>
+        <div id="diffArea"></div>
     </div>
-    {% endblock %}
     <script>
         function submitForm() {
             const userInput = document.getElementById('userInput').value;
-            fetch('http://127.0.0.1:5100/get-completion', { // Use the full URL for the Flask endpoint
+            fetch('http://127.0.0.1:5100/get-completion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,12 +33,33 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert("Original: " + data.original + "\nRevised: " + data.revised); // Here it will display both the original and revised texts
+                // Update the outputText textarea with the revised text
+                document.getElementById('outputText').value = data.revised;
+                var gpt_output = data.revised;
+
+                var changedWords = data.difference;
+                
+                var outputArea = document.getElementById('diffArea');
+                document.getElementById('test').innerHTML = "Highlighted changes below:"
+                outputArea.innerHTML = highlightWords(gpt_output, changedWords); 
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
+            
+        }
+        function highlightWords(inputText, wordList){
+            var wordsToHighlight = wordList.split("****"); 
+
+            const regex = new RegExp(`\\b(${wordsToHighlight.join('|')})\\b`, 'gi');
+
+            const highlightedText = inputText.replace(regex, (match) => {
+            return `<span style='background-color: yellow;'>${match}</span>`;
+            });
+
+            return highlightedText;
         }
     </script>
+    {% endblock %}
 </body>
 </html>
