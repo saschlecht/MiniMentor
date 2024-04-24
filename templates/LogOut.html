@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Out</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='webdesign.css') }}">
+</head>
+
+<body>
+    {% extends "layout.html" %}
+{% block content %}
+    <div class="logout">
+        <div class="small-container">
+        <form>
+            <h1>Log Out</h1>
+            <button type="button" onclick="logout()">Log out</button>
+        </form>
+        </div>
+    </div>
+    <script>
+        function logout() {
+            fetch('http://127.0.0.1:5100/db_bp/acct-logout', { // Use the full URL for the Flask endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Successfully logged out, refresh page');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>
