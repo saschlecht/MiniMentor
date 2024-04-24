@@ -53,6 +53,7 @@ def get_completion():
 
     return jsonify({"original": inputMessage, "revised": revised_text, "difference" : difference})
 
+
 # # This route can be added to test the textDiff functionality once we've implemented it
 # # It should accept two texts and return their differences
 # @app.route('/text-diff', methods=['POST'])
