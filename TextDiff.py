@@ -8,16 +8,20 @@ def calculate_difference(string1, string2):
   completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant that finds the difference between two paragraphs and outputs what is different about them in a list format."},
-        {"role": "user", "content": "Find the difference between these two pieces of text: \n Text 1:" + string1 + "\n Text 2: " + string2},
+        {"role": "system", "content": "You are a helpful assistant that finds the difference between two paragraphs and outputs what is different about them in a list format. example: 'word1 / word2.'"},
+        {"role": "user", "content": "Find the difference between these two pieces of text, and output only the changed words and phrases in the format 'word1 / word2'. MAKE SURE it is in that format every single time, or else i will be mad: \n Paragraph 1:" + string1 + "\n Paragraph 2: " + string2},
     ]
   )
   diff = completion.choices[0].message.content
-    
-  return diff
   
-if __name__ == "__main__":
+  # trim the data and put into a list 
+  # split by new line
+  trimData = diff.split('\n')
+  outputString = ""
   
-  string1 = "Unfortunately, after much deliberation, I am unable to provide you with a spot on the 2024 Spring Banquet committee. There were a large number of applicants for banquet committee this semester, so please do not feel discouraged. "
-  string2 = "Regrettably, after careful consideration, I am unable to offer you a position on the 2024 Spring Banquet committee. There were a high number of applicants for the banquet committee this semester, so please do not be disheartened."
-  calculate_difference(string1, string2)
+  for i in range(len(trimData)):
+    outputString += trimData[i][trimData[i].index("/") + 2:] + "****"
+  
+  print(outputString)
+  return outputString
+  

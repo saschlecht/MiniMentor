@@ -7,8 +7,9 @@ body {
 .menu {
     background-color: #004BA8;
     overflow: hidden;
-    display: flex; /* Added this line */
-    justify-content: flex-start; /* Added this line */
+    display: flex; 
+    justify-content: flex-start;
+    list-style-type: none;
 }
   
 .menu a {
@@ -95,5 +96,17 @@ textarea {
     text-align: center;
     margin: auto;
     margin-top: 20px;
+}
+
+#diffArea {
+    font-size: 15px;
+    color: black;
+    padding: 10px;
+}
+
+#test {
+    font-size: 15px;
+    color: black;
+    padding: 10px;
 }
 

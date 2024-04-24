@@ -17,6 +17,9 @@
         </div>
         <br><br>
         <button style="font-size: 15px" type="button" onclick="submitForm()">Submit</button>
+        <br><br>
+        <div id= test></div>
+        <div id="diffArea"></div>
     </div>
     <script>
         function submitForm() {
@@ -31,11 +34,30 @@
             .then(response => response.json())
             .then(data => {
                 // Update the outputText textarea with the revised text
-                document.getElementById('outputText').value = data.revised; 
+                document.getElementById('outputText').value = data.revised;
+                var gpt_output = data.revised;
+
+                var changedWords = data.difference;
+                
+                var outputArea = document.getElementById('diffArea');
+                document.getElementById('test').innerHTML = "Highlighted changes below:"
+                outputArea.innerHTML = highlightWords(gpt_output, changedWords); 
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
+            
+        }
+        function highlightWords(inputText, wordList){
+            var wordsToHighlight = wordList.split("****"); 
+
+            const regex = new RegExp(`\\b(${wordsToHighlight.join('|')})\\b`, 'gi');
+
+            const highlightedText = inputText.replace(regex, (match) => {
+            return `<span style='background-color: yellow;'>${match}</span>`;
+            });
+
+            return highlightedText;
         }
     </script>
     {% endblock %}
